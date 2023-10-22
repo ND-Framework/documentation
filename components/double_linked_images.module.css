@@ -1,0 +1,32 @@
+.imageLink {
+    display: inline;
+    margin: auto 4% auto auto;
+}
+.imageLink2 {
+    display: inline;
+}
+
+.image {
+    display: inline;
+    width: 50%;
+}
+.image2 {
+    display: inline;
+    width: 45%;
+}
+
+@media (max-width: 768px) {
+    .imageLink {
+        display: block;
+        width: 100%;
+        margin: auto auto 7% auto;
+    }
+    .imageLink2 {
+        display: block;
+        width: 100%;
+    }
+    .image, .image2 {
+        display: block;
+        width: 100%;
+    }
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import { useRouter } from 'next/router';
+import styleSheet from "./style.module.css"
 
 
 function useHead() {
@@ -37,7 +38,7 @@ function useNextSeoProps() {
 }
 
 const config: DocsThemeConfig = {
-  logo: <img src="https://user-images.githubusercontent.com/86536434/193913064-01b8a9b4-97a2-4bd2-9f33-99f89558ac01.png" width='40%'/>,
+  logo: <img src="https://user-images.githubusercontent.com/86536434/193913064-01b8a9b4-97a2-4bd2-9f33-99f89558ac01.png" className={styleSheet.mainLogo}/>,
   project: {
     link: 'https://github.com/ND-Framework',
   },

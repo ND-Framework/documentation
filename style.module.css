@@ -1,0 +1,9 @@
+.mainLogo {
+    width: 40%;
+}
+
+@media (max-width: 768px) {
+    .mainLogo {
+        width: 100%;
+    }
+}
