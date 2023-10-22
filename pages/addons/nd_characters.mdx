@@ -1,0 +1,106 @@
+import { Steps } from 'nextra/components'
+
+### ND_Characters
+This resource is a character selection menu allowing players to have multiple characters, without this resource ND Core will be single character based.
+
+### Setup guide
+<Steps>
+### Install optional dependencies
+* [fivem-appearance](https://github.com/pedr0fontoura/fivem-appearance/releases)
+
+### Resource start order
+```sh filename="server.cfg" copy
+start fivem-appearance
+start ND_Characters
+```
+
+### Configuration
+ND_Characters contains a `config.lua` file, each configuration option is explained here:
+
+---
+
+#### changeCharacterCommand
+This is a command that will open the character selection page.
+
+```changeCharacterCommand = "changecharacter"{:lua}``` if command /changecharacter is used then ui will open.
+
+```changeCharacterCommand = false{:lua}``` command doesn't register and this feature is completely disabled.
+
+---
+
+#### characterLimit
+Simply the max amount of characters a player can have at once.
+
+---
+
+#### logo
+Logo to display on the character selection menu.
+
+---
+
+#### backgrounds
+Collection of images to use, one of these images will be randomly picked and used as the background image.
+
+---
+
+#### startingMoney
+When a character is created this is what they're money will be set to.
+
+---
+
+#### jobs
+Jobs that the player can pick when creating a character.
+Access is based on discord role ids. If you set it to "0" everyone will have access.
+```lua
+jobs = {
+    ["Unemplyed"] = {"0"}, -- everyone can select Uneployed.
+    ["Police"] = {
+        "872921520719142932", -- players with these two discord roles can only select Police.
+        "872921520719142932"
+    }
+}
+```
+
+---
+
+#### paychecks
+Setting this to true will enable paychecks for jobs.
+
+---
+
+#### paycheckInterval
+Time in minutes between every paycheck.
+
+---
+
+#### salaries
+Amount of money paid to a character for their job every paycheckInterval.
+```lua
+salaries = {
+    ["Police"] = 100,
+    ["Ambulance"] = 200
+},
+```
+
+---
+
+#### spawns
+Every character will see `"DEFAULT"`, only characters with the specific job will see both `"DEFAULT"` + the job they have in this example if the character had the `"Police"` job they would see the spawns for it.
+```lua
+spawns = {
+    ["DEFAULT"] = {
+        {label = "Dream View Motel (Paleto Bay)", coords = vec4(-102.78, 6336.28, 31.49, 0)},
+        {label = "Eastern Motel (Sandy Shores)", coords = vec4(343.53, 2636.94, 43.94, 0)},
+        {label = "Legion Square", coords = vec4(196.96, -934.54, 29.69, 0)},
+        {label = "Del Perro Pier", coords = vec4(-1616.69, -1073.81, 12.15, 0)},
+        {label = "LSIA", coords = vec4(-1039.65, -2741.02, 12.89, 0)}
+    },
+    ["Police"] = {
+        {label = "Paleto Bay Sheriff", coords = vec4(-447.2, 6009.4, 30.72, 0)},
+        {label = "Sandy Shores Sheriff", coords = vec4(1849.4, 3688.6, 33.27, 0)},
+        {label = "Mission Row PD", coords = vec4(437.6, -986.6, 29.69, 0)}
+    }
+}
+```
+
+</Steps>

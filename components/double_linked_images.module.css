@@ -15,12 +15,13 @@
     width: 45%;
 }
 .image, .image2 {
-    border: calc(.0625rem) solid #373a40;
+    border: .07rem solid #373a40;
     border-radius: 10px;
-    transition: border-color .2s ease;
+    transition: border-color .2s ease, scale .2s ease;
 }
 .image:hover, .image2:hover {
     border-color: #228be6;
+    scale: 0.98;
 }
 
 
