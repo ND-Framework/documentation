@@ -14,6 +14,15 @@
     display: inline;
     width: 45%;
 }
+.image, .image2 {
+    border: calc(.0625rem) solid #373a40;
+    border-radius: 10px;
+    transition: border-color .2s ease;
+}
+.image:hover, .image2:hover {
+    border-color: #228be6;
+}
+
 
 @media (max-width: 768px) {
     .imageLink {
