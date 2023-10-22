@@ -1,8 +1,7 @@
 import React from 'react'
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import { useRouter } from 'next/router';
-import styleSheet from "./style.module.css"
-
+import { useTheme } from 'nextra-theme-docs';
 
 function useHead() {
   const { asPath } = useRouter();
@@ -24,21 +23,31 @@ function useHead() {
 }
 
 function useNextSeoProps() {
-  const { asPath } = useRouter();
-  const arr = asPath.replace(/[-_]/g, ' ').split('/');
-  const category = (arr[1][0] !== '#' && arr[1]) || 'ND Framework';
-  const rawTitle = arr[arr.length - 1];
-  const title = /[a-z]/.test(rawTitle) && /[A-Z]/.test(rawTitle) ? rawTitle : '%s';
+    const { asPath } = useRouter();
+    const arr = asPath.replace(/[-_]/g, ' ').split('/');
+    const category = (arr[1][0] !== '#' && arr[1]) || 'ND Framework';
+    const rawTitle = arr[arr.length - 1];
+    const title = /[a-z]/.test(rawTitle) && /[A-Z]/.test(rawTitle) ? rawTitle : '%s';
 
-  return {
-    titleTemplate: `${title} - ${
-      rawTitle === category ? 'Documentation' : category.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())
-    }`,
-  };
+    return {
+        titleTemplate: `${title} - ${
+            rawTitle === category ? 'Documentation' : category.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())
+        }`,
+    };
+}
+
+function logoImage() {
+    const { theme } = useTheme();
+    const logoSrc = theme === 'light'
+        ? 'https://i.imgur.com/7k3dJmx.png'
+        : 'https://user-images.githubusercontent.com/86536434/193913064-01b8a9b4-97a2-4bd2-9f33-99f89558ac01.png';
+    return (
+        <img src={logoSrc} className="mainLogo" />
+    );
 }
 
 const config: DocsThemeConfig = {
-  logo: <img src="https://user-images.githubusercontent.com/86536434/193913064-01b8a9b4-97a2-4bd2-9f33-99f89558ac01.png" className={styleSheet.mainLogo}/>,
+  logo: logoImage,
   project: {
     link: 'https://github.com/ND-Framework',
   },

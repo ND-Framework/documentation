@@ -1,0 +1,101 @@
+# Server functions
+
+## getPlayer
+This returns the player and contains [player data](../playerdata.mdx) & [player functions](../server/player.mdx).
+
+**parameters:**
+* source: `number`
+
+**returns:**
+* player: `table`
+```lua copy
+local player = NDCore.getPlayer(source)
+```
+
+
+## getPlayers
+
+If no key or no value is passed then all active players will be returned. If returnArray is `true` then players will be returned in an array otherwise an object with their source as the key.
+
+**parameters:**
+* key: `string`
+* value: `any`
+* returnArray: `boolean`
+
+**returns:**
+* players: `table`
+    * >Contains all [players](../playerdata.mdx) with matching key value data.
+
+```lua copy
+NDCore.getPlayers(key, value, returnArray)
+```
+
+```lua copy filename="Array example"
+local players = NDCore.getPlayers("job", "windowcleaner", true)
+for i=1, #players do
+    local ply = players[i]
+    print(ply.fullname)
+end
+```
+
+```lua copy filename="Object example"
+local players = NDCore.getPlayers("job", "windowcleaner", false)
+for playerSource, playerData in pairs(players) do
+    print(playerData.fullname)
+end
+```
+
+
+## getPlayerServerInfo
+Returns identifiers & discord information, same as in [player data](../playerdata.mdx) and [getDiscordInfo](#getdiscordinfo).
+
+**parameters:**
+* source: `number`
+
+**returns:**
+* info: `table`
+    * identifiers: `table`
+    * discord: `table`
+```lua
+local info = NDCore.getPlayerServerInfo(source)
+```
+
+
+## loadSQL
+This will run [oxmysql query](https://overextended.dev/oxmysql/Functions/query) for the content in an sql file.
+
+**parameters:**
+* fileLocation: `string`
+* resource: `string`
+
+**returns:**
+* success: `boolean`
+```lua
+local success = NDCore.loadSQL(fileLocation, resource)
+```
+
+
+## getDiscordInfo
+If a user is not found by `discordUserId` this will return `nil{:lua}` otherwise it will return this info:
+
+**parameters:**
+* discordUserId: `string`
+
+**returns:**
+* discordInfo: `table`
+    * nickname: `string`
+    * user: `string`
+    * roles: `table`
+```lua
+local discordInfo = NDCore.getDiscordInfo(discordUserId)
+```
+
+
+## enableMultiCharacter
+ND Core is single character by defualt unless this is used, if you're making a character selection resource you should use this to disable single character. [ND Characters](../../addons/nd_characters) utilises this function.
+
+**parameters:**
+* enable: `boolean`
+```lua
+NDCore.enableMultiCharacter(enable)
+```

@@ -1,0 +1,43 @@
+# Player data
+
+* id: `number`
+* source: `number`
+* identifier: `string`
+* identifiers: `table`
+    * fivem: `string`
+    * steam: `string`
+    * license: `string`
+    * xbl: `string`
+    * discord: `string`
+    * live: `string`
+* discord: `table`
+    * nickname: `string`
+    * user: `string`
+    * roles: `table`
+* name: `string`
+* firstname: `string`
+* lastname: `string`
+* fullname: `string`
+* dob: `string`
+* gender: `string`
+* cash: `number`
+* bank: `number`
+* [groups](#groups-data): `table`
+* job: `string`
+* jobInfo: `table`
+    * label: `string`
+    * rankName: `string`
+    * rank: `number`
+* metadata: `table`
+* inventory: `table`
+
+---
+
+### (groups) data
+The groups table includes all groups the character has. In this example the character has the police group.
+* groups: `table`
+    * police: `table`
+        * label: `string`
+        * rankName: `string`
+        * rank: `number`
+        * isJob: `boolean`

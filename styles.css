@@ -1,0 +1,24 @@
+.mainLogo {
+    width: 40%;
+    min-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .mainLogo {
+        width: 100%;
+        max-width: 290px;
+    }
+}
+
+ul.nx-list-disc {
+    margin-top: 0;
+    list-style-type: disc;
+}
+
+ul.nx-list-disc li li {
+    list-style-type: circle;
+}
+
+ul.nx-list-disc li li li {
+    list-style-type: square;
+}
