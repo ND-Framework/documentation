@@ -1,0 +1,103 @@
+import { Steps } from 'nextra/components';
+import PreviewVideo from "../../components/preview_video";
+
+# ND_Banking
+This resource creates working banks and atm's around the map, players can use atm's to withraw money. Players can also use the banks to withdaw, deposit, and transfer money. The banks also has invoices, this reasource manages invoices and has exports for developers to use.
+
+
+
+## Preview video
+update this old video!!
+<PreviewVideo
+    src="https://www.youtube.com/embed/2v3C05fHSos?si=EDqfr-GurrsP-Rp5"
+/>
+
+
+
+## createInvoice export
+**parameters**
+* amount: `number`
+* due: `number`
+* request: `boolean`
+* from: `table`
+    * name: `string`
+    * account: `string`
+    * source: `number`
+    * character: `number`
+* to: `table`
+    * name: `string`
+    * account: `string`
+    * source: `number`
+    * character: `number`
+```lua copy
+exports["ND_Banking"]:createInvoice(amount, due, request, from, to)
+```
+
+In this example the sender is a non player sender, and the receiver is a player. The invoice has 7 days to be paid. If the request parameter is set to `true{:lua}` then the player has to accept the invoice. In this example it's set to `false{:lua}` which makes the player required to pay it withing the due date.
+```lua copy filename="example"
+local from = {
+    name = "Government",
+    account = "0"
+}
+
+local player = NDCore.getPlayer(source)
+local to = {
+    character = player.id
+}
+
+local banking = exports["ND_Banking"]
+banking:createInvoice(500, 7, false, from, to)
+```
+
+
+
+
+## Setup guide
+<Steps>
+### Install the resource
+Download and add the resource to your server.
+
+
+
+### Configuration
+ND_Banking contains a `config.lua` file, each configuration option is explained here:
+
+---
+
+#### valuesWithdrawATM
+This is the values that will show up when using an ATM.
+```lua copy
+valuesWithdrawATM = {20, 50, 100, 200, 500, 1000}
+```
+
+<img
+    src="https://user-images.githubusercontent.com/86536434/215471458-c065a3a3-b7cc-4913-ad5a-26ce10dee16e.png"
+    style={
+        {
+            "width": "60%",
+            "border-radius": "15px",
+            "user-select": "none",
+            "pointer-events": "none"
+        }
+    }
+/>
+
+
+---
+
+#### maxWithdrawDepositBank
+Maximum amount of money that can be withrawn or deposited to a bank at once by a player.
+```lua copy
+maxWithdrawDepositBank = 50000
+```
+
+---
+
+
+#### minWithdrawDepositBank
+Minimum amount of money that can be withrawn or deposited to a bank at once by a player.
+```lua copy
+minWithdrawDepositBank = 1000
+```
+
+</Steps>
