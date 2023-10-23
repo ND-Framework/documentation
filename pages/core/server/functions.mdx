@@ -179,3 +179,228 @@ Set the character as the current playing one for the player.
 ```lua copy
 local player = NDCore.setActiveCharacter(source, id)
 ```
+
+---
+
+# Vehicles
+
+## getVehicleById
+Get vehicle data from a vehicle id.
+
+**parameters**
+* id: `number` | `string`
+
+**returns**
+* data: `table`
+    * id: `number` | `string`
+    * owner: `number`
+    * plate: `string`
+    * properties: `table`
+    * stored: `boolean`
+    * impounded: `boolean`
+    * available: `boolean`
+> a vehicle can only be available if it's not impounded and it's stored. Stolen doesn't matter it's just used in things like police mdt.
+```lua copy
+local vehicle = NDCore.getVehicleById(id)
+print(json.encode(vehicle, {indent=true}))
+--[[
+    {
+        id = 5,
+        owner = 25,
+        plate = "1234ABCD",
+        properties = json.decode(vehicle.properties) or {},
+        stored = true,
+        impounded = false,
+        stolen = false,
+        available = true
+    }
+]]
+```
+
+
+## getVehicle
+Get NDCore vehicle from an entity.
+
+**parameters**
+* entity: `number`
+
+**returns**
+* vehicle: `table`
+> view [vehicle](vehicle.mdx)
+
+```lua copy
+local vehicle = NDCore.getVehicle(entity)
+```
+
+
+## getVehicles
+Get a table with all the characters owned vehicles.
+
+**parameters**
+* characterId: `number`
+
+**returns**
+* vehicles: `table`
+> contains the same info as [getVehicleById](#getvehiclebyid)
+
+```lua copy
+NDCore.getVehicles(characterId)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local vehicles = NDCore.getVehicles(player.id)
+for i=1, #vehicles do
+    local veh = vehicles[i]
+    print(json.encode(veh, {indent=true}))
+    --[[
+        {
+            id = 5,
+            owner = 25,
+            plate = "1234ABCD",
+            properties = json.decode(vehicle.properties) or {},
+            stored = true,
+            impounded = false,
+            stolen = false,
+            available = true
+        }
+    ]]
+end
+```
+
+
+## giveVehicleAccess
+Give a player keys to a vehicle.
+
+**parameters**
+* source: `number`
+* vehicle: `entity`
+* access: `boolean`
+
+```lua copy
+NDCore.giveVehicleAccess(source, vehicle, access)
+```
+
+## createVehicle
+Spawns a vehicle.
+
+**parameters**
+* info: `table`
+    * owner: `number`
+    * vehicleId: `number`
+    * properties: `table`
+    * coords: `vec3` | `vec4`
+    * heading: `number`
+    * model: `number`
+    * keys: `table`
+    * source: `number`
+> if no vehicleId is passed a temporary one will be created.
+
+**returns**
+* vehicle: `table`
+> view [vehicle](vehicle.mdx)
+
+```lua copy
+local vehicle = NDCore.createVehicle()
+```
+```lua copy filename="example"
+-- works like this:
+NDCore.createVehicle({
+    model = `taxi`,
+    coords = vec4(x, y, z, w)
+})
+
+-- also like this:
+NDCore.createVehicle({
+    model = `taxi`,
+    coords = vec3(x, y, z)
+    heading = w
+})
+
+-- also can add owner that will receive keys.
+local player = NDCore.getPlayer(source)
+NDCore.createVehicle({
+    model = `taxi`,
+    coords = vec4(x, y, z, w),
+    owner = player.id
+})
+
+-- more key access can be given.
+local player = NDCore.getPlayer(source)
+NDCore.createVehicle({
+    model = `taxi`,
+    coords = vec4(x, y, z, w),
+    keys = {
+        [player.id] = true
+    }
+})
+```
+
+
+
+## transferVehicleOwnership
+This will change the owner of the vehicle completely and even take and give keys, remove and add map blip and more.
+
+**parameters**
+* vehicleId: `number` | `string`
+* fromSource: `number`
+* toSource: `number`
+
+**returns**
+* success: `boolean`
+
+```lua copy
+NDCore.transferVehicleOwnership(vehicleId, fromSource, toSource)
+```
+
+
+
+## setVehicleOwned
+This function will register the vehicle owned and add it to the database.
+
+**parameters**
+* playerId: `number`
+* properties: `table`
+* stored: `boolean`
+> properties should include information about the vehicle [ox_lib](https://overextended.dev/ox_lib/Modules/VehicleProperties/Client) has a function to get a vehicles properties.
+
+**returns**
+* vehicleId
+
+```lua copy
+local vehicleId = NDCore.setVehicleOwned(playerId, properties, stored)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local vehicleId = NDCore.setVehicleOwned(player.id, properties, true)
+```
+
+
+
+## shareVehicleKeys
+give a player access to another players vehicle as if they are next to eachother and hand the keys.
+* source: `number`
+* targetSource: `number`
+* vehicle: `entity`
+
+**returns**
+* success: `boolean`
+
+```lua copy
+local success = NDCore.shareVehicleKeys(source, targetSource, vehicle)
+```
+
+## spawnOwnedVehicle
+Spawns a vehicle that's owned by the player and checks for availability
+
+**parameters**
+* source `number`
+* vehicleId `number`
+* coords `vector4`
+
+**returns**
+* vehicle: `table`
+> view [vehicle](vehiclefunctions.mdx)
+
+```lua copy
+local vehicle = NDCore.spawnOwnedVehicle(source, vehicleId, coords)
+```

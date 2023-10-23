@@ -1,0 +1,82 @@
+{/* local vehicle = NDCore.getVehicle(entity) */}
+# Vehicle
+To get the vehicle use the [NDCore.getVehicle](functions#getvehicle) function.
+
+---
+
+
+# Vehicle data
+* entity: `number`
+* id: `number` | `string`
+* owner: `number`
+* keys: `table`
+* properties: `table`
+* locked: `boolean`
+* hotwired: `boolean`
+* hotwired: `boolean`
+* metadata: `table`
+* netId: `number`
+
+
+---
+
+
+# Vehicle functions
+
+## delete
+Delete the vehicle entity and optionally save the properties to the database.
+
+**parameters**
+* saveProperties: `boolean`
+
+```lua copy
+vehicle.delete(saveProperties)
+```
+
+
+
+## setProperties
+Update the vehicle properties both on the entity and database.
+
+**parameters**
+* properties: `table`
+
+```lua copy
+vehicle.setProperties(properties)
+```
+
+
+## setLocked
+Set the vehicle as locked/unlocked
+
+**parameters**
+* status: `boolean`
+
+```lua
+vehicle.setLocked(status)
+```
+
+
+## setPlate
+Set the vehicle plate.
+
+**parameters**
+* plate: `string`
+
+```lua
+vehicle.setPlate(plate)
+```
+
+
+## setStatus
+Set the vehicle status.
+
+**parameters**
+* statusType: `string`
+* status: `boolean`
+> statusType can be "stored", "impounded", "stolen"
+
+```lua
+vehicle.setStatus(statusType, status)
+```
+

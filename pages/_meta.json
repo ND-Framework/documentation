@@ -1,6 +1,7 @@
 {
     "index": "Introduction",
     "setup": "Setup guide",
+    "commands": "Commands",
     "addons": "Addon resources",
     "core": "Core developer docs",
     "store": {

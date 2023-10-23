@@ -1,3 +1,6 @@
 {
-    "player": "Player functions"
+    "events": "Events",
+    "functions": "Functions",
+    "player": "Player functions",
+    "vehicle": "Vehicle"
 }
