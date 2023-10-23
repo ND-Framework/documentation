@@ -1,0 +1,92 @@
+# Client functions
+
+
+
+## getPlayer
+This returns the player, it only contains [player data](../playerdata.mdx) and no player functions.
+
+**returns:**
+* player: `table`
+```lua copy
+local player = NDCore.getPlayer()
+```
+
+
+
+NDCore.getPlayersFromCoords
+## getPlayersFromCoords
+Get the local playerId of the closest player from coords. Limited to players known to the client.
+
+**parameters**
+* distance: `number`
+* coords: `vector3`
+
+**returns**
+* closestPlayer: `number`
+```lua copy
+local closestPlayer = NDCore.getPlayersFromCoords(distance, coords)
+```
+
+
+
+## revivePlayer
+Revive the player.
+
+**parameters**
+* reset: `boolean`
+* keepDead: `boolean`
+
+```lua copy
+NDCore.revivePlayer(reset, keepDead)
+```
+
+
+
+## notify
+Notify on the player, this checks for which notification script is used.
+
+```lua copy
+NDCore.notify(...)
+```
+
+
+
+## createAiPed
+Create a static npc that can be interacted with.
+
+**parameters**
+* info: `table`
+    * model: `string` | `number`
+    * blip: `table`
+        * sprite: `number`
+        * scale: `number`
+        * color: `number`
+        * label: `string`
+        * groups: `table` > example: `{"swat", "admin"}{:lua}`
+    * anim: `table`
+        * dict: `string`
+        * clip: `string`
+    * options: `table` > [ox_target](https://overextended.dev/ox_target/Options) options
+
+**returns**
+id: `number`
+
+```lua copy
+NDCore.createAiPed(info)
+```
+
+
+
+## removeAiPed
+Remove a created ai ped.
+
+**parameters**
+id: `number`
+
+```lua copy
+NDCore.removeAiPed(id)
+```
+```lua copy filename="example"
+local id = NDCore.createAiPed(info)
+NDCore.removeAiPed(id)
+```

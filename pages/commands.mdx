@@ -1,4 +1,41 @@
 # Commands
+These are chat/console commands registered in ND Core that players can use.
+
+
+
+## pay
+This command is not restricted and can be used by anyone. It's used to give a nearby player money from the "cash" account.
+
+/setgroup [target] [action] [job] [rank]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| amount | number | amount of money |
+
+
+
+## getkeys
+If a player is inside their owned vehicle, they can use this command to get another pair of keys for their vehicle. This command only works if `core:useInventoryForKeys` is used in [ndcore.cfg](../setup#configuration).
+
+/getkeys
+
+
+
+## givekeys
+If a player is inside their owned vehicle, they can use this command to give another player key access to their vehicle. This command only works if `core:useInventoryForKeys` is not used in [ndcore.cfg](../setup#configuration).
+
+/givekeys
+
+
+
+---
+
+
+
+# Admin commands
+All commands below are restricted to admins, admins are set trough ndcore.cfg or using the setgroup command.
+
+
 
 ## setmoney
 Admin command to manage player money.
@@ -13,6 +50,7 @@ Admin command to manage player money.
 | amount | number | amount of money |
 
 
+
 ## setjob
 Admin command to set a players job.
 
@@ -22,7 +60,9 @@ Admin command to set a players job.
 | :------------ | :---------: | :---------- |
 | target | playerId | Target player's server id |
 | job | string | job name |
-| rank | number | optional, default 1. |
+| rank | number | optional, default 1 |
+
+
 
 ## setgroup
 Admin command to set a players group.
@@ -34,5 +74,112 @@ Admin command to set a players group.
 | target | playerId | Target player's server id |
 | action | string | remove/add |
 | group | string | group name |
-| rank | number | optional, default 1. |
+| rank | number | optional, default 1 |
+
+
+
+## skin
+Admin command to set a player in character customization mode.
+
+/skin [target]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| target | playerId | Target player's server id |
+
+
+
+## character
+Admin command to set a player into character selection menu.
+
+/character [target]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| target | playerId | Target player's server id |
+
+
+
+## unlock
+Admin command to unlock a vehicle nearby.
+
+/setmoney
+
+
+
+## revive
+Admin command to revive players.
+
+/revive [target]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| target | playerId | Target player's server id |
+
+
+
+## dv
+Admin command to delete vehicles.
+
+/revive [range]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| range | number | The range to select vehicles for deleteion from |
+
+
+
+## goto
+Admin command used to teleport to a player.
+
+/goto [target]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| target | playerId | Target player's server id |
+
+
+
+## bring
+Admin command used to teleport a player.
+
+/bring [target]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| target | playerId | Target player's server id |
+
+
+
+## freeze
+Admin command used to freeze a player.
+
+/freeze [target]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| target | playerId | Target player's server id |
+
+
+
+## unfreeze
+Admin command used to unfreeze a player.
+
+/unfreeze [target]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| target | playerId | Target player's server id |
+
+
+
+## vehicle
+Admin command to spawn a vehicle.
+
+/vehicle [model]
+
+| Arg | Type | Description |
+| :------------ | :---------: | :---------- |
+| model | string | The model name |
+
 

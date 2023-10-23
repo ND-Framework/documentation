@@ -1,0 +1,25 @@
+# Shared functions
+
+
+## isResourceStarted
+Check if a resource is started, this function also supports a callback for when the resources state changes.
+
+**parameters**
+* resourceName: `string`
+* cb: `function`
+
+**returns**
+* started: `boolean`
+
+```lua copy
+local started = NDCore.isResourceStarted(resourceName, cb)
+```
+```lua copy filename="example"
+local started = NDCore.isResourceStarted("ND_Fuel")
+print(started)
+```
+```lua copy filename="example"
+NDCore.isResourceStarted("ND_Fuel", function(started)
+    print("ND_Fuel status started:", started)
+end)
+```

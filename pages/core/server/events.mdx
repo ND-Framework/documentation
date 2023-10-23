@@ -1,0 +1,52 @@
+# Events
+It's important you listen to non networked events correctly, read [listening for events](https://docs.fivem.net/docs/scripting-manual/working-with-events/listening-for-events/) and [RegisterNetEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/RegisterNetEvent/).
+
+
+## ND:moneyChange
+This event will be triggered when a player account balance changes. This event is not safe for net and should only be listened to.
+
+**parameters**
+* source: `number`
+* account: `string`
+* amount: `number`
+* action: `string`
+* reason: `string`
+> action can be "set", "remove", and "add"
+
+```lua copy
+AddEventHandler("ND:moneyChange", function(source, account, amount, action, reason)
+
+end)
+```
+
+
+
+## ND:characterUnloaded
+This event will be triggered when a player leaves or changes their character, that's when that character gets unloaded. This event is not safe for net and should only be listened to.
+
+**parameters**
+* source: `number`
+* character: `table`
+> character includes [player data](../playerdata.mdx) and [player functions](player.mdx)
+
+```lua copy
+AddEventHandler("ND:characterUnloaded", function(source, character)
+
+end)
+```
+
+
+
+## ND:characterLoaded
+This event will be triggered when a player selects a character. This event is not safe for net and should only be listened to.
+
+**parameters**
+* character: `table`
+> character includes [player data](../playerdata.mdx) and [player functions](player.mdx)
+
+```lua copy
+AddEventHandler("ND:characterLoaded", function(character)
+
+end)
+```
+

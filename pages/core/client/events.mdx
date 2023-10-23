@@ -1,0 +1,47 @@
+# Client events
+
+
+## updateMoney
+Updates character money for the client. This can be used to show the money on a hud.
+
+**parameters**
+* cash: `number`
+* bank: `number`
+
+```lua copy
+AddEventHandler("ND:updateMoney", function(cash, bank)
+    print(cash, bank)
+end)
+```
+
+
+
+## characterLoaded
+This is triggered when a player selects a character.
+
+**parameters**
+* character: `table`
+> character contains [player data](../playerdata.mdx)
+
+```lua copy
+AddEventHandler("ND:characterLoaded", function(character)
+    print(character.firstname, character.lastname)
+end)
+```
+
+
+
+## updateCharacter
+This is triggered if any character data is changed.
+
+**parameters**
+* character: `table`
+> character contains [player data](../playerdata.mdx)
+
+```lua copy
+AddEventHandler("ND:updateCharacter", function(character)
+    print(character.firstname, character.lastname)
+end)
+```
+
+
