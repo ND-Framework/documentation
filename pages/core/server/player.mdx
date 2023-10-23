@@ -1,0 +1,429 @@
+# Player functions
+
+## deductMoney
+Deduct money from a characters account, accounts are `cash` & `bank`.
+
+**parameters:**
+* account: `string`
+    * "bank"/"cash"
+* amount: `number`
+* reason: `string`
+
+**returns:**
+* success: `boolean`
+```lua copy
+local success = player.deductMoney(account, amount, reason)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local success = player.deductMoney("bank", 500, "Parking ticket")
+print(success)
+```
+
+
+## addMoney
+Add money to a characters account, accounts are `cash` & `bank`.
+
+**parameters:**
+* account: `string`
+* amount: `number`
+* reason: `string`
+
+**returns:**
+* success: `boolean`
+```lua copy
+local success = player.addMoney(account, amount, reason)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local success = player.addMoney("bank", 1500, "Daily salary")
+print(success)
+```
+
+
+## depositMoney
+Moves money from `cash` account to `bank` account.
+
+**parameters:**
+* amount: `number`
+
+**returns:**
+* success: `boolean`
+```lua copy
+local success = player.depositMoney(amount)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local success = player.depositMoney(20)
+print(success)
+```
+
+
+## withdrawMoney
+Moves money from `bank` account to `cash` account.
+
+**parameters:**
+* amount: `number`
+
+**returns:**
+* success: `boolean`
+```lua copy
+local success = player.withdrawMoney(amount)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local success = player.withdrawMoney(20)
+print(success)
+```
+
+
+## getData
+Get data from [player data](../playerdata.mdx).
+
+**parameters:**
+* data: `string`
+
+**returns:**
+* data: `any`
+```lua copy
+player.getData(data)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local playerName = player.getData("fullname")
+print(playerName)
+```
+
+
+## getMetadata
+Get metadata from a character.
+
+**parameters:**
+* metadata: `string` | `table`
+
+**returns:**
+* metadata: `any`
+```lua copy
+player.getMetadata(metadata)
+```
+```lua copy filename="string example"
+local player = NDCore.getPlayer(source)
+local count = player.getMetadata("deathCount")
+if count then
+    local result = ("%s died %d times"):format(player.name, count)
+    print(result) -- John died 5 times
+end
+```
+```lua copy filename="table example"
+local player = NDCore.getPlayer(source)
+local metadata = player.getMetadata({"deathCount", "currentlyDead"})
+local name = player.name
+
+if metadata.currentlyDead then
+    local result = ("%s is currently dead"):format(name)
+    print(result) -- John is currently dead
+end
+if metadata.deathCount then
+    local result = ("%s died %d times"):format(name, count)
+    print(result) -- John died 5 times
+end
+```
+
+
+## setMetadata
+Set character metadata.
+
+**parameters:**
+* key: `string` | `table`
+* value: `any`
+
+**returns:**
+* metadata: `table`
+```lua copy
+player.setMetadata(key, value)
+```
+```lua copy filename="string example"
+local player = NDCore.getPlayer(source)
+local metadata = player.setMetadata("deathCount", 5)
+print(metadata.deathCount)
+```
+```lua copy filename="table example"
+local player = NDCore.getPlayer(source)
+local metadata = player.setMetadata({
+    deathCount = 5,
+    currentlyDead = false
+})
+print(metadata.deathCount, metadata.currentlyDead)
+```
+
+
+## delete
+Delete a character completely.
+
+```lua copy
+local result = player.delete()
+```
+
+
+## unload
+Unload a currently playing player character, this will save the character data, location & more.
+
+```lua copy
+local saved = player.unload()
+```
+
+
+## save
+Save a characters data to the database.
+
+```lua copy
+local saved = player.save()
+```
+
+
+## createLicense
+Create a license for the character, this can be any type of license. Weapon license, drivers license, hunting, anything.
+
+**parameters:**
+* licenseType: `string`
+* expire: `number`
+> by default if expire is not passed the time will be a month.
+
+```lua copy
+player.createLicense(licenseType, expire)
+```
+```lua copy filename="example"
+-- create a driver license that expires in a month.
+player.createLicense("driver", os.time()+2592000)
+```
+
+
+## getLicense
+Get a license from the player.
+
+**parameters**
+* identifier: `string`
+
+**returns**
+* data: `table`
+
+```lua copy
+player.getLicense(identifier)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local licenses = player.getMetadata("licenses") or {}
+local driverLicense = nil
+for i=1, #licenses do
+    local license = licenses[i]
+    if licenses.type == "driver" then
+        driverLicense = licenses.identifier
+        break
+    end
+end
+
+if driverLicense then
+    local license = player.getLicense(driverLicense)
+    print(json.encode(license, {indent=true}))
+    --[[
+        type = "driver",
+        status = "valid",
+        issued = 123123,
+        expires = 123123,
+        identifier = 123abc123abc
+    ]]
+end
+```
+
+
+## updateLicense
+Update a players license data.
+
+**parameters**
+* identifier: `string`
+* newData: `table`
+
+```lua copy
+player.updateLicense(identifier, newData)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+player.updateLicense("123abc123abc", {
+    status = "suspended"
+})
+```
+
+
+## setCoords
+Set the player ped coords.
+
+**parameters**
+* coords: `vector3` | `vector4`
+
+**returns**
+* success: `boolean`
+
+```lua copy
+player.setCoords(coords)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local coords = vec3(123.4, 123.4, 123.4)
+player.setCoords(coords)
+
+-- vector4 also works.
+coords = vec4(123.4, 123.4, 123.4, 123.4)
+player.setCoords(coords)
+```
+
+
+## triggerEvent
+The same as TriggerClientEvent for the player source.
+
+**parameters**
+* eventName
+
+```lua copy
+player.triggerEvent(eventName, ...)
+```
+
+
+## notify
+Notify on the player, this checks for which notification script is used.
+
+```lua copy
+player.notify(...)
+```
+
+
+## revive
+Revive the player.
+
+```lua
+player.revive()
+```
+
+
+## drop
+Kick a player with a reason message.
+
+**parameters**
+* reason: `string`
+
+```lua copy
+player.drop(reason)
+```
+
+
+## active
+Set the character as the current playing one for the player.
+
+```lua copy
+player.active()
+```
+
+
+## addGroup
+Add a group to the character.
+
+**parameters**
+* name: `string`
+* rank: `number`
+> rank would be a number representing the rank from `core:groups` in [ndcore.cfg](../../setup#configuration) if rank is not passed default is 1
+
+**returns**
+* group: `table`
+> returns group contains info from [player data](../playerdata#groups-data)
+```lua copy
+player.addGroup(name, rank)
+```
+```lua copy filename="example"
+--[[ group from ndcore.cfg
+    "swat": {
+        "label": "SWAT",
+        "ranks": ["Member", "Sniper", "Team lead", "Commander"]
+    }
+]]
+local player = NDCore.getPlayer(source)
+player.addGroup("swat", 1) -- this will set the player as member.
+player.addGroup("swat", 4) -- this will set the player as Commander.
+```
+
+
+## getGroup
+Get group information from character.
+
+**parameters**
+* name: `string`
+
+**returns**
+* group: `table`
+> returns group contains info from [player data](../playerdata#groups-data)
+```lua copy
+player.getGroup(name)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local group = player.getGroup("swat")
+print(json.encode(group, {indent=true}))
+--[[
+    label = "SWAT",
+    rankName = "Commander",
+    rank = 4,
+    isJob = nil
+]]
+```
+
+
+## removeGroup
+Remove a group from a character and returns the group removed.
+
+**parameters**
+* name: `string`
+
+**returns**
+* group: `table`
+```lua copy
+player.removeGroup(name)
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local group = player.removeGroup("swat")
+print(json.encode(group, {indent=true}))
+--[[
+    label = "SWAT",
+    rankName = "Commander",
+    rank = 4,
+    isJob = nil
+]]
+```
+
+
+## setJob
+Set character job & rank.
+
+**parameters**
+* name: `string`
+* rank: `number`
+> This function works like [addGroup](#addgroup)
+
+**returns**
+* group: `table`
+```lua copy
+player.setJob(name, rank)
+```
+
+## getJob
+Get the player job and job group.
+
+**returns**
+* jobName: `string`
+* jobInfo: `table`
+> jobInfo contains the same data as in [addGroup](#addgroup)
+```lua copy
+player.getJob()
+```
+```lua copy filename="example"
+local player = NDCore.getPlayer(source)
+local jobName, jobInfo = player.getJob()
+```
