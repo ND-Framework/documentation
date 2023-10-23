@@ -10,3 +10,25 @@ import DiscordInlineShield from "../components/discord_inline_shield";
         alt="Andy's Development Discord server"
     />
 </Callout>
+
+## Importing NDCore
+```lua copy filename="fxmanifest.lua"
+shared_script "@ND_Core/init.lua"
+```
+
+You can also use this if you have multiple shared scripts.
+```lua copy filename="fxmanifest.lua"
+shared_script {
+    "@ND_Core/init.lua"
+}
+```
+
+If you're only using client or only using server you can also just import one of them.
+```lua copy filename="fxmanifest.lua"
+server_script "@ND_Core/init.lua"
+```
+
+```lua copy filename="fxmanifest.lua"
+client_script "@ND_Core/init.lua"
+```
+
