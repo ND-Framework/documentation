@@ -99,3 +99,83 @@ ND Core is single character by defualt unless this is used, if you're making a c
 ```lua
 NDCore.enableMultiCharacter(enable)
 ```
+
+
+## newCharacter
+Create a new player character to the database.
+
+**parameters**
+* source: `number`
+* info: `table`
+    * firstname: `string`
+    * lastname: `string`
+    * dob: `string`
+    * gender: `string`
+    * cash: `number`
+    * bank: `number`
+    * groups: `table`
+    * metadata: `table`
+    * inventory: `table`
+
+**returns**
+* player: `table`
+> This returns the player and contains [player data](../playerdata.mdx) & [player functions](../server/player.mdx)
+```lua copy
+NDCore.newCharacter(source, info)
+```
+```lua copy filename="example"
+local player = NDCore.newCharacter(source, {
+    firstname = "John",
+    lastname = "Doe",
+    dob = "29/03/1999",
+    gender = "male",
+    cash = 2500,
+    bank = 8000
+})
+
+print(player.firstname) -- John
+```
+
+
+## fetchCharacter
+Fetch a character from the database, this will use the `core:characterIdentifier` in [ndcore.cfg](../../setup#configuration) it's important to pass the source if you want to check if a source owns the character.
+
+**parameters**
+* identifier: `string`
+* source: `number`
+
+**returns**
+* player: `table`
+> This returns the player and contains [player data](../playerdata.mdx) & [player functions](../server/player.mdx)
+```lua copy
+local character = NDCore.fetchCharacter(identifier, source)
+```
+
+
+## fetchAllCharacters
+Fetch all character a player owns. The returned table consisits of keys that are the character ids and the value is character info without any player functions.
+
+**parameters**
+* source: `number`
+
+**returns***
+* characters: `table`
+```lua copy
+local characters = NDCore.fetchAllCharacters(source)
+```
+
+
+## setActiveCharacter
+Set the character as the current playing one for the player.
+
+**parameters**
+* source: `number`
+* id: `number`
+> The id parameter is the character id from the [player data](../playerdata.mdx)
+
+**returns**
+* player: `table`
+> This returns the player and contains [player data](../playerdata.mdx) & [player functions](../server/player.mdx)
+```lua copy
+local player = NDCore.setActiveCharacter(source, id)
+```
