@@ -1,23 +1,26 @@
-# Nextra Docs Template 
+# ND Framework Documentation
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
+<div>
+    <a href="https://prism-host.com/" target="_blank">
+        <img src="https://github.com/ND-Framework/documentation/assets/86536434/5378f58f-04cb-408a-8972-54503d6fb1d0" alt="Prism host banner" height="145px"  />
+    </a>
+    <a href="https://discord.gg/Z9Mxu72zZ6" target="_blank">
+        <img src="https://discordapp.com/api/guilds/857672921912836116/widget.png?style=banner3" alt="Andyyy Development Server" height="145px" />
+    </a>
+</div>
 
-[**Live Demo →**](https://nextra-docs-template.vercel.app)
 
-[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
+---
 
-## Quick Start
-
-Click the button to clone this repository and deploy it on Vercel:
-
-[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
-
-## Local Development
+### Local Development
 
 First, run `pnpm i` to install the dependencies.
 
 Then, run `pnpm dev` to start the development server and visit localhost:3000.
 
-## License
+### License
 
 This project is licensed under the MIT License.
+
+
+This project was made via Nextra <3
