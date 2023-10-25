@@ -1,17 +1,18 @@
 import { Steps } from 'nextra/components'
 import { FileTree } from 'nextra/components'
+import { Callout } from 'nextra/components'
 
 # Setup guide
 
 <Steps>
 ### Install dependencies
 * [oxmysql](https://github.com/overextended/oxmysql/releases)
-* [ox_lib](https://github.com/overextended/oxmysql/releases)
+* [ox_lib](https://github.com/overextended/ox_lib/releases)
 * [ND_Core](https://github.com/ND-Framework/ND_Core/releases)
 
 ### Install optional dependencies
 * [ox_target](https://github.com/overextended/ox_target/releases)
-* [ox_inventory](https://github.com/overextended/ox_target/releases)
+* [ox_inventory](https://github.com/overextended/ox_inventory/releases)
 
 ### Resource start order
 ```sh filename="server.cfg" copy
@@ -25,6 +26,9 @@ start ND_Core
 * create a file and name it `ndcore.cfg`
 * copy paste the code below
 * write `exec ndcore.cfg{:sh}` in your `server.cfg`
+
+<Callout type="warning" emoji="⚠️">Make sure `exec ndcore.cfg` is set before `ND_Core` is started!</Callout>
+
 
 <FileTree>
     <FileTree.Folder name="fxserver" defaultOpen>
