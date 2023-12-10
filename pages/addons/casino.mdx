@@ -1,0 +1,46 @@
+import { Steps } from 'nextra/components';
+import PreviewVideo from "../../components/preview_video";
+
+# ND_Ambulance
+This resource creates clothing shop, chips cashier, valet, vip membership & more at the diamond casino.
+
+
+
+## Preview video
+No preview video yet!
+{/* <PreviewVideo
+    src="https://www.youtube.com/embed/2v3C05fHSos?si=EDqfr-GurrsP-Rp5"
+/> */}
+
+
+
+## Setup guide
+<Steps>
+### Install the resource
+Download and add the resource to your server
+[ND_Casino](https://github.com/ND-Framework/ND_Casino/releases)
+
+
+### Install dependencies
+* [ox_target](https://github.com/overextended/ox_target/releases)
+* [ox_inventory](https://github.com/overextended/ox_inventory/releases)
+* [ND_AppearanceShops](https://github.com/ND-Framework/ND_AppearanceShops/releases)
+
+
+
+### Create inventory items
+```lua filename="items.lua" copy
+["casino_chips"] = {
+    label = "Chips"
+}
+```
+![casino_chips](https://github.com/ND-Framework/ND_Casino/assets/86536434/1582aa84-6d96-4ecc-901d-de74273d63d3)
+
+
+
+### Configuration
+ND_Dealership contains multiple configuration files in the `/data` folder.
+
+
+
+</Steps>
