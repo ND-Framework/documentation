@@ -1,0 +1,71 @@
+import { Steps } from 'nextra/components';
+import PreviewVideo from "../../components/preview_video";
+
+# ND_Ambulance
+This resource creates dealerships anywhere you want, it has showcase rooms, vehicle catalog menu, previewing vehicles before purchasing, test driving before purchasing vehicles, ox_target interactions, permissions & more.
+
+
+
+## Preview video
+No preview video yet!
+{/* <PreviewVideo
+    src="https://www.youtube.com/embed/2v3C05fHSos?si=EDqfr-GurrsP-Rp5"
+/> */}
+
+
+
+## Setup guide
+<Steps>
+### Install the resource
+Download and add the resource to your server
+[ND_Dealership](https://github.com/ND-Framework/ND_Dealership/releases)
+
+
+### Install dependency
+* [ox_target](https://github.com/overextended/ox_target/releases)
+
+
+
+### Configuration
+ND_Dealership contains two configuration files `data/dealerships.lua` and `data/vehicles.lua` this documentation explains how you can configure this resource.
+
+
+
+#### vehicles.lua
+This is where you set up each vehicle category.
+* `model` Vehicle model hash.
+
+* `price` Number of how much the vehicle costs.
+
+* `label` String of the vehicle model, you can use this for addon vehicles that don't have a model name.
+
+* `properties` String of all vehicle properties that will be applied, to get this you can customize your vehicle in game and then use the `/vehprops` command to copy properties to clipboard. 
+
+
+
+#### dealerships.lua
+In this file you create each dealership and locations.
+
+* `showroomCategories`
+If this is found and contains categories then vehicles from those categories will be randomly selected and added to the showroom.
+
+* `categories`
+This is the vehicle categories that can be purchased at that specific dealership, these will be found on the vehicle catalog when interacting with the dealership ped which is not the same menu as the showroom one when interacting with a vehicle.
+
+* `blip`
+You can configure how the blip will look like, the blip only appears if the player has permision to the blip. For blip sprite & colors view [fivem blip docs.](https://docs.fivem.net/docs/game-references/blips/)
+
+* `groups`
+Ìf this exists and is found then the dealership will use permissions to switch vehicle in the showroom, test drives, purchase vehicles, interact with target, & blip.
+
+* `interact`
+This is ped interaction, you can set the ped model, coords, and location of the vehicle if the player views a vehicle from the ped vehicle catalog menu.
+
+* `showroomLocations`
+Vehicle showroom locations, this is where the vehicles will be spawned in the showroom.
+
+* `spawns`
+Locations of vehicle spawns if a player purchases a vehicle and doesn't send to garage.
+
+
+</Steps>
