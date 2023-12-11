@@ -1,0 +1,43 @@
+import { Steps } from 'nextra/components';
+
+# ox_inventory
+Slot-based inventory with metadata.
+
+
+
+## Setup guide
+<Steps>
+### Install the resource
+[ox_inventory](https://github.com/overextended/ox_inventory/releases)
+
+
+### Create inventory items
+```lua copy filename="items.lua"
+["keys"] = {
+    label = "Car keys",
+    weight = 50,
+    stack = false,
+    close = true,
+    allowArmed = false,
+    server = {
+        export = "ND_Core.keys"
+    },
+    buttons = {
+        {
+            label = "Trunk",
+            action = function(slot)
+                exports["ND_Core"]:keyControl("trunk", slot)
+            end
+        },
+        {
+            label = "Disable key",
+            action = function(slot)
+                exports["ND_Core"]:keyControl("disable", slot)
+            end
+        }
+    }
+},
+```
+
+
+</Steps>
