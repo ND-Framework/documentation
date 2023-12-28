@@ -94,37 +94,47 @@ add_ace resource.ox_lib command.add_principal allow
 add_ace resource.ox_lib command.remove_principal allow
 
 # This is jobs, gangs, police, fire, ambulance, everything.
+# minumumBossRank is the mimimum rank a player becomes boss as, some scripts may utilize boss for different permissions.
+# Rank number is counted from left to right.
 setr core:groups {
     "sahp": {
         "label": "SAHP",
+        "minimumBossRank": 5,
         "ranks": ["Trooper", "Senior Trooper", "Corporal", "Sergeant", "Lieutenant", "Chief"]
     },
     "lspd": {
         "label": "LSPD",
+        "minimumBossRank": 5,
         "ranks": ["Officer", "Senior officer", "Corporal", "Sergeant", "Lieutenant", "Chief"]
     },
     "bcso": {
         "label": "BCSO",
+        "minimumBossRank": 5,
         "ranks": ["Officer", "Senior officer", "Corporal", "Sergeant", "Lieutenant", "Chief"]
     },
     "swat": {
         "label": "SWAT",
+        "minimumBossRank": 3,
         "ranks": ["Member", "Sniper", "Team lead", "Commander"]
     },
     "lsfd": {
         "label": "LSFD",
+        "minimumBossRank": 5,
         "ranks": ["Volunteer", "Firefighter", "Senior firefighter", "Lieutenant", "Fire Chief"]
     },
     "ballas": {
         "label": "Ballas",
+        "minimumBossRank": 2,
         "ranks": ["Member", "Leader"]
     },
     "families": {
         "label": "Families",
+        "minimumBossRank": 2,
         "ranks": ["Member", "Leader"]
     },
     "cartel": {
         "label": "Madrazo Cartel",
+        "minimumBossRank": 2,
         "ranks": ["Member", "Leader"]
     }
 }
