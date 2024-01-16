@@ -67,14 +67,20 @@ setr core:discordActionLink2 "https://andyyy.tebex.io/category/fivem-scripts"
 # set core:discordGuildId "123456789012345678"
 # set core:discordBotToken "EXAMPLE_TOKEN.abc123.xyz456"
 
+# if set to true, and you have your discord token connected, users will have to join your discord to join your fivem server.
+set core:discordMemeberRequired false
+
 # The identifier to use for characters. Players aren't allowed to join without it, license is good don't change unless you know what you're doing.
 set core:characterIdentifier "license"
+
+# disable vehicle air contorl for cars and other land vehicles that's not supposed to do flips in air.
+setr core:disableVehicleAirControl true
 
 # % chance of random vehicles being unlocked.
 setr core:randomUnlockedVehicleChance 30
 
-# disable vehicle air contorl for cars and other land vehicles that's not supposed to do flips in air.
-setr core:disableVehicleAirControl true
+# if true player must either hotwire a vehicle or have keys to start the engine.
+setr core:requireKeys true
 
 # If true it will use ox_inventory keys item for vehicles, if false it will use a keybind.
 setr core:useInventoryForKeys true
@@ -84,8 +90,8 @@ setr core:useInventoryForKeys true
 set core:admins ["fivem:1459624", "fivem:1152629"]
 set core:adminDiscordRoles ["944284542758449212", "93422454258349612", "93345451558145232"]
 
-# Compatibility with other frameworks, backwards is NDCore v1, if you're not using any of these compatible frameworks then remove them from this list.
-setr core:compatibility ["backwards", "esx", "qb"]
+# Compatibility with other frameworks, backwards is NDCore v1, if you're not using any of these compatible frameworks then remove them from this list. Available compatibility: ["backwards", "esx", "qb"]
+setr core:compatibility ["backwards"]
 
 # Allow ox_lib to use commands, don't remove this!
 add_ace resource.ox_lib command.add_ace allow
@@ -97,6 +103,11 @@ add_ace resource.ox_lib command.remove_principal allow
 # minumumBossRank is the mimimum rank a player becomes boss as, some scripts may utilize boss for different permissions.
 # Rank number is counted from left to right.
 setr core:groups {
+    "unemployed": {
+        "label": "Unemployed",
+        "minimumBossRank": 1,
+        "ranks": ["Unemployed"]
+    },
     "sahp": {
         "label": "SAHP",
         "minimumBossRank": 5,
