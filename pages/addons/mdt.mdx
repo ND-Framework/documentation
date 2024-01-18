@@ -1,0 +1,43 @@
+import { Steps } from 'nextra/components';
+import PreviewVideo from "../../components/preview_video";
+
+# ND_MDT
+Police MDT with many features!
+
+
+## Preview video
+/* <PreviewVideo
+    src="https://www.youtube.com/embed/NcTIdCN4VR0?si=EmZsoMUj5PvG-HyN"
+/> */
+
+
+## Setup guide
+<Steps>
+### Install the resource
+[ND_MDT](https://github.com/ND-Framework/ND_MDT/releases)
+
+
+### Create inventory items
+```lua copy filename="items.lua"
+["mdt"] = {
+    label = "MDT",
+    weight = 800,
+    client = {
+        export = "ND_MDT.useTablet"
+    }
+}
+```
+![mdt](https://github.com/ND-Framework/ND_MDT/assets/86536434/1dcb38e5-4609-401f-97bf-77371fb55466)
+
+
+</Steps>
+
+# Exports
+```lua
+exports["ND_MDT"]:createDispatch({
+    caller = "John Doe",
+    location = "Sandy shores", -- not required
+    callDescription = "Whiteness bank robbery",
+    coords = vec3(x, y, z) -- if this is used and location isn't used then it will still display the location from these coords.
+})
+```
