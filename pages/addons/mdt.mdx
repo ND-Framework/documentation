@@ -11,11 +11,27 @@ Police MDT with many features!
 />
 
 
+## createDispatch export
+If you're a developer and want to integrate this with your script you can use this:
+```lua
+exports["ND_MDT"]:createDispatch({
+    caller = "John Doe",
+    location = "Sandy shores", -- not required
+    callDescription = "Whiteness bank robbery",
+    coords = vec3(x, y, z) -- if this is used and location isn't used then it will still display the location from these coords.
+})
+```
+
+
 ## Setup guide
 <Steps>
 ### Install the resource
 [ND_MDT](https://github.com/ND-Framework/ND_MDT/releases)
 
+
+### Install dependencies
+* [ox_inventory](https://github.com/overextended/ox_inventory/releases)
+* [ND_Dealership](https://github.com/ND-Framework/ND_Dealership/releases)
 
 ### Create inventory items
 ```lua copy filename="items.lua"
@@ -29,15 +45,4 @@ Police MDT with many features!
 ```
 ![mdt](https://github.com/ND-Framework/ND_MDT/assets/86536434/1dcb38e5-4609-401f-97bf-77371fb55466)
 
-
 </Steps>
-
-# Exports
-```lua
-exports["ND_MDT"]:createDispatch({
-    caller = "John Doe",
-    location = "Sandy shores", -- not required
-    callDescription = "Whiteness bank robbery",
-    coords = vec3(x, y, z) -- if this is used and location isn't used then it will still display the location from these coords.
-})
-```
