@@ -17,7 +17,7 @@ end)
 
 
 ## ND:characterUnloaded
-This event will be triggered when a player leaves or changes their character, that's when that character gets unloaded. This event is not safe for net and should only be listened to.
+This event will be triggered when a player leaves or changes their character, that's when that character gets unloaded.
 
 **parameters**
 * character: `table`
@@ -25,7 +25,7 @@ This event will be triggered when a player leaves or changes their character, th
 
 ```lua copy
 AddEventHandler("ND:characterUnloaded", function(character)
-
+    print(character.firstname, character.lastname)
 end)
 ```
 
