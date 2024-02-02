@@ -3,11 +3,13 @@
     "banking": "Banking",
     "appearanceshops": "Appearance shops",
     "dealership": "Dealership",
-    "ambulance": "Ambulance",
     "casino": "Casino",
     "blackjack": "Blackjack",
     "nitro": "Nitro",
     "status": "Status",
+    "ambulance": "Ambulance Job",
+    "police": "Police Job",
     "mdt": "Police MDT",
+    "inventory": "Inventory",
     "phone": "Phone"
 }

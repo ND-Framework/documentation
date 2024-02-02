@@ -1,0 +1,117 @@
+import { Steps } from 'nextra/components';
+import PreviewVideo from "../../components/preview_video";
+
+# ND_Police
+This is a script that contains all essential features the Police needs in a roleplay server. You can use ND_MDT, shot spotter notifications will be reported there. The ND_AppearanceShops will create personal wardrobe in police lockers in this resource. Use inventory to create armouries, and use ND_Core to create police garages.
+
+
+## Preview video
+<PreviewVideo
+    src="https://www.youtube.com/embed/koHWPGtih-Y?si=i8L-93q-5jE6rsO5"
+/>
+
+
+## Setup guide
+<Steps>
+### Install the resource
+Download and add the resource to your server 
+[ND_Police](https://github.com/ND-Framework/ND_Police/releases)
+
+
+### Install dependencies
+* [ox_inventory](https://github.com/overextended/ox_inventory/releases)
+* [ox_target](https://github.com/overextended/ox_target/releases)
+* [ox_lib](https://github.com/overextended/ox_lib/releases)
+
+### Create inventory items
+```lua copy filename="items.lua"
+["shield"] = {
+    label = "Police shield",
+    weight = 8000,
+    stack = false,
+    consume = 0,
+    client = {
+        export = "ND_Police.useShield",
+        add = function(total)
+            if total > 0 then
+                    pcall(function() return exports["ND_Police"]:hasShield(true) end)
+                end
+            end,
+        remove = function(total)
+            if total < 1 then
+                pcall(function() return exports["ND_Police"]:hasShield(false) end)
+            end
+        end
+    }
+},
+["spikestrip"] = {
+    label = "Spikestrip",
+    weight = 500,
+    client = {
+        export = "ND_Police.deploySpikestrip"
+    }
+},
+["cuffs"] = {
+    labal = "Handcuffs",
+    weight = 150,
+    client = {
+        export = "ND_Police.cuff"
+    }
+},
+["zipties"] = {
+    labal = "Zipties",
+    weight = 10,
+    client = {
+        export = "ND_Police.ziptie"
+    }
+},
+["tools"] = {
+    label = "Tools",
+    description = "Can be used to hotwire vehicles.",
+    weight = 800,
+    consume = 1,
+    stack = true,
+    close = true,
+    client = {
+        export = "ND_Core.hotwire",
+        event = "ND_Police:unziptie"
+    }
+},
+["handcuffkey"] = {
+    label = "Handcuff key",
+    weight = 10,
+    client = {
+        export = "ND_Police.uncuff"
+    }
+},
+["casing"] = {
+    label = "Bullet Casing"
+},
+["projectile"] = {
+    label = "Projectile"
+},
+```
+
+![shield](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/shield.png)
+![spikestrip](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/spikestrip.png)
+![cuffs](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/cuffs.png)
+![zipties](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/zipties.png)
+![tools](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/tools.png)
+![handcuffkey](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/handcuffkey.png)
+
+![casing-ammo-380](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/casing-ammo-380.png)
+![casing-ammo-41](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/casing-ammo-41.png)
+![casing-ammo-45](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/casing-ammo-45.png)
+![casing-ammo-9](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/casing-ammo-9.png)
+![casing-ammo-rifle](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/casing-ammo-rifle.png)
+![casing-ammo-rifle2](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/casing-ammo-rifle2.png)
+![casing-ammo-shotgun](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/casing-ammo-shotgun.png)
+
+![projectile-ammo-380](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/projectile-ammo-380.png)
+![projectile-ammo-41](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/projectile-ammo-41.png)
+![projectile-ammo-45](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/projectile-ammo-45.png)
+![projectile-ammo-9](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/projectile-ammo-9.png)
+![projectile-ammo-rifle](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/projectile-ammo-rifle.png)
+![projectile-ammo-rifle2](https://raw.githubusercontent.com/ND-Framework/ND_Police/main/items/projectile-ammo-rifle2.png)
+
+</Steps>
