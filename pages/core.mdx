@@ -23,6 +23,10 @@ shared_scripts {
 }
 ```
 
+
+---
+
+
 If you're only using client or only using server you can also just import one of them.
 ```lua copy filename="fxmanifest.lua"
 server_script "@ND_Core/init.lua"
@@ -32,3 +36,20 @@ server_script "@ND_Core/init.lua"
 client_script "@ND_Core/init.lua"
 ```
 
+
+---
+Since every function in ND Core is an export you could also do it as shown in the example below:
+```lua copy filename="client.lua"
+local player = exports["ND_Core"]:getPlayer()
+
+print(player.firstname)
+```
+
+You could also do it this way for simplicity:
+```lua copy filename="client.lua"
+local NDCore = exports["ND_Core"]
+
+local player = NDCore:getPlayer()
+
+print(player.firstname)
+```
