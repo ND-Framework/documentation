@@ -41,12 +41,11 @@ end)
 This event will be triggered when a player selects a character. This event is not safe for net and should only be listened to.
 
 **parameters**
-* source: `number`
 * character: `table`
 > character includes [player data](../playerdata.mdx) and [player functions](player.mdx)
 
 ```lua copy
-AddEventHandler("ND:characterLoaded", function(source, character)
+AddEventHandler("ND:characterLoaded", function(character)
 
 end)
 ```
