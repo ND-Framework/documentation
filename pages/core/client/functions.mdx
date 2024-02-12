@@ -29,18 +29,6 @@ local closestPlayer = NDCore.getPlayersFromCoords(distance, coords)
 
 
 
-## revivePlayer
-Revive the player, don't use this to revive the player. This is used in places like ND_Ambulance to revive the player and set them as dead again. Use the server side player function instead.
-
-**parameters**
-* reset: `boolean`
-* keepDead: `boolean`
-
-```lua copy
-NDCore.revivePlayer(reset, keepDead)
-```
-
-
 
 ## notify
 Notify on the player, this checks for which notification script is used.
