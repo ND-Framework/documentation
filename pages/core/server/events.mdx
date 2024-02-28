@@ -50,3 +50,17 @@ AddEventHandler("ND:characterLoaded", function(character)
 end)
 ```
 
+
+
+## updateCharacter
+This is triggered if any character data is changed.
+
+**parameters**
+* character: `table`
+> character contains [player data](../playerdata.mdx)
+
+```lua copy
+AddEventHandler("ND:updateCharacter", function(character)
+    print(character.firstname, character.lastname)
+end)
+```
