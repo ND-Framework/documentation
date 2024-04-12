@@ -1,8 +1,15 @@
 import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components'
 import PreviewVideo from "../../components/preview_video";
 
 # NPWD
 This resource creates a phone that can be used to send messages, call, and more.
+
+
+
+<Callout type="warning" emoji="⚠️">
+    ``ND_NPWD`` is no longer needed to use NPWD with ND.
+</Callout>
 
 
 
@@ -29,6 +36,19 @@ Download and add the resource to your server
 ### Set framework
 ```copy filename="server.cfg"
 set npwd:framework ndcore
+```
+
+
+### Set database
+```json copy filename="config.json"
+"database": {
+    "useIdentifierPrefix": true,
+    "playerTable": "nd_characters",
+    "identifierColumn": "identifier",
+    "identifierType": "license",
+    "profileQueries": true,
+    "phoneNumberColumn": "phonenumber"
+},
 ```
 
 </Steps>
