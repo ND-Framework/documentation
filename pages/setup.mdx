@@ -1,19 +1,76 @@
-import { Steps } from 'nextra/components'
-import { FileTree } from 'nextra/components'
-import { Callout } from 'nextra/components'
+import { Steps, FileTree, Callout } from 'nextra/components'
 
 # Setup guide
 
-## txAdmin recipe
-For a quick setup you can use the ND Framework [txAdmin recipe](https://github.com/ND-Framework/txadmin-recipe), you'll still need to configure the ConVar options to your preference in the file `ndcore.cfg`, if you encounter any issues don't hesitate to reach out.
+<Callout type="info" emoji="ℹ️">
+    We highly recommend using the txAdmin recipe over a manual installation.
+</Callout>
 
-## Manual setup
+## txAdmin recipe
+<Steps>
+### Download the latest stable artifact version.
+Be sure to download version `12000` or higher. Don't use the "Latest Recommended" or "Latest Optional" buttons as they are very outdated.
+* [Windows](https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/)
+* [Linux](https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/)
+
+### Setup Database
+<Callout type="warning" emoji="⚠️">
+    Do **NOT** use XAMPP, you *will* run into issues.
+</Callout>
+- If you're on a VPS or dedicated server, Download & Install the latest version of [MariaDB](https://mariadb.org/download/).
+- If you're on a Zap Hosting game server, you can read their documentation on how to setup a database or reach out to their support team.
+<Callout type="warning" emoji="⚠️">
+    If you're on some other game server hosting, you should check out [Prism Host](https://prism-host.com) instead as using any host that isn't ZAP for game servers is against FiveM's Terms of Service & will result in your server or account being deleted.
+</Callout>
+
+### Start the server setup
+Where ever you installed the artifacts to, open the directory and launch `fxserver.exe` & follow the steps prompted.
+
+### Deploying the recipe
+When prompted, select "Remote URL Template"
+
+![](/static/txadmin-deployment.png)
+
+Then enter the remote template URL.
+* `https://raw.githubusercontent.com/ND-Framework/txadmin-recipe/main/recipe.yaml`
+
+![](/static/txadmin-url.png)
+
+Then continue.
+
+### Setup Recipe Information
+When prompted to input the parameters for the recipe, be sure you fill out the database information to match the respective information. If you can't see it, click "Show/Hide Database options (advanced)"
+
+### Start the server
+Once you have completed all of the steps, you can start the server. If you run into any issues, please see [Common Issues](#common-issues) or join our [Discord](https://discord.gg/andys-development-857672921912836116) server
+
+</Steps>
+
+## Manual installation
 
 <Steps>
-### Install dependencies
+### Download the latest stable artifact version.
+Be sure to download version `12000` or higher. Don't use the "Latest Recommended" or "Latest Optional" buttons as they are very outdated.
+* [Windows](https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/)
+* [Linux](https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/)
+
+### Setup Database
+<Callout type="warning" emoji="⚠️">
+    Do **NOT** use XAMPP, you *will* run into issues.
+</Callout>
+- If you're on a VPS or dedicated server, Download & Install the latest version of [MariaDB](https://mariadb.org/download/).
+- If you're on a Zap Hosting game server, you can read their documentation on how to setup a database or reach out to their support team.
+<Callout type="warning" emoji="⚠️">
+    If you're on some other game server hosting, you should check out [Prism Host](https://prism-host.com) instead as using any host that isn't ZAP for game servers is against FiveM's Terms of Service & will result in your server or account being deleted.
+</Callout>
+
+### Install & setup required dependencies
 * [oxmysql](https://github.com/overextended/oxmysql/releases)
 * [ox_lib](https://github.com/overextended/ox_lib/releases)
 * [ND_Core](https://github.com/ND-Framework/ND_Core/releases)
+* Make sure your server artifacts version is `12000` or above.
+* Make sure your game build is set to 2802 or higher. See how to set your gamebuild [here](https://forum.cfx.re/t/tutorial-forcing-gamebuilds-on-fivem/4784977).
+* Make sure your server is running OneSync (Formally Onesync Infinity) and **not** legacy. See how to enable OneSync [here](https://forum.cfx.re/t/onesync-infinity-how-to-use-it/996612).
 
 ### Install optional dependencies
 * [ox_target](https://github.com/overextended/ox_target/releases)
@@ -162,3 +219,11 @@ setr core:groups {
 ```
 
 </Steps>
+
+
+
+## Common issues
+- `attempt to index a nil value (global 'lib')`
+  - You're missing or didn't properly install `ox_lib`.
+- `SCRIPT ERROR: @ND_Core/server/functions.lua:66: attempt to index a nil value (global 'MySQL')`
+  - You're missing or didn't properly install `oxmysql`.
