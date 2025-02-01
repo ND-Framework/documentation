@@ -1,4 +1,4 @@
-import { Steps, FileTree, Callout } from 'nextra/components'
+import { Steps, FileTree, Callout, Tabs } from 'nextra/components'
 
 # Setup guide
 
@@ -31,9 +31,30 @@ When prompted, select "Remote URL Template"
 
 ![](/static/txadmin-deployment.png)
 
-Then enter the remote template URL.
-* `https://raw.githubusercontent.com/ND-Framework/txadmin-recipe/main/recipe.yaml`
+Choose the respective recipe for the server you want to deploy.
+<Tabs items={['ND Main', 'ND Lite', 'ND Legacy']}>
+    <Tabs.Tab>
+        ND Main is for users who want the full experience that ND has to offer, this includes all released free resources & everything you need to get started creating the best server you can.
 
+        ```sh filename="ND Main" copy
+            https://raw.githubusercontent.com/ND-Framework/txadmin-recipe/main/nd-main.yaml
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ND Lite is for users who want a simple experience with only the essentials included. This allows you to build out the server exactly how you want.
+
+        ```sh filename="ND Lite" copy
+            https://raw.githubusercontent.com/ND-Framework/txadmin-recipe/main/nd-lite.yaml
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ND Legacy is for users who want to use ND as an add-on to enhance their experience rather than using it as a full fledged framework. This recipe comes with vMenu included & the old character creation system.
+
+        ```sh filename="ND Legacy" copy
+            https://raw.githubusercontent.com/ND-Framework/txadmin-recipe/main/nd-legacy.yaml
+        ```
+    </Tabs.Tab>
+</Tabs>
 ![](/static/txadmin-url.png)
 
 Then continue.
